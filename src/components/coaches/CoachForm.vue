@@ -1,12 +1,12 @@
 <template>
   <form @submit.prevent="submitForm">
     <div class="form-control">
-      <label for="firstname">First name</label>
-      <input type="text" id="firstname" v-model.trim="firstname" />
+      <label for="firstName">First name</label>
+      <input type="text" id="firstname" v-model.trim="firstName" />
     </div>
     <div class="form-control">
-      <label for="lastname">Last name</label>
-      <input type="text" id="lastname" v-model.trim="lastname" />
+      <label for="lastName">Last name</label>
+      <input type="text" id="lastname" v-model.trim="lastName" />
     </div>
      <div class="form-control">
       <label for="description">Description</label>
@@ -38,10 +38,11 @@
 <script>
 
 export default {
+  emits: ['save-data'],
   data() {
     return {
-      firstname: '',
-      lastname: '',
+      firstName: '',
+      lastName: '',
       description: '',
       rate: null,
       areas: []
@@ -50,13 +51,13 @@ export default {
   methods: {
     submitForm(){
       const formData = {
-        first: this.firstname,
-        last: this.lastname,
+        first: this.firstName,
+        last: this.lastName,
         desc: this.description,
         rate: this.rate,
         areas: this.areas
       };
-      console.log(formData);
+      this.$emit('save-data', formData);
     }
   }
 }
